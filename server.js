@@ -4,13 +4,6 @@ const app = express();
 const { Sequelize } = require('sequelize');
 // const { Pool } = require('pg');
 
-// SEQUELIZE CONNECTION
-const sequelize = new Sequelize({
-    storage: process.env.PG_URI,
-    dialect: 'postgres',
-    username: 'postgres',
-    password: 'postgres'
-  })
 
 //   const pool = new Pool({
 //     connectionString: process.env.PG_URI,
@@ -20,12 +13,6 @@ const sequelize = new Sequelize({
 //   });
   
 
-try {
-    sequelize.authenticate()
-    console.log(`Connected with Sequelize at ${process.env.PG_URI}`)
-} catch(err) {
-    console.log(`Unable to connect to PG: ${err}`)
-}
 
 // CONFIGURATION / MIDDLEWARE
 require('dotenv').config()
