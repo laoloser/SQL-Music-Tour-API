@@ -3,6 +3,9 @@ const express = require('express');
 const app = express();
 const { Sequelize } = require('sequelize');
 const bandsController = require('./controllers/bands_controller'); // Adjust the path as needed
+const eventsController = require('./controllers/events_controller');
+const stagesController = require('./controllers/stages_controller');
+
 
 // CONFIGURATION / MIDDLEWARE
 require('dotenv').config();
@@ -18,6 +21,8 @@ app.get('/', (req, res) => {
 
 // USE BANDS CONTROLLER
 app.use('/bands', bandsController);
+app.use('/events', eventsController);
+app.use('/stages', stagesController);
 
 // LISTEN
 app.listen(process.env.PORT || 3000, () => {
