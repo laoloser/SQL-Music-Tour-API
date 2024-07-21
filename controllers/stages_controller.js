@@ -7,7 +7,10 @@ const { Op } = require('sequelize')
 stages.get("/", async (req, res) => {
   try {
     const allStages = await Stage.findAll({
-      order: [["stage_name", "ASC"]],
+        order: [['available_start_time', 'ASC']],
+        where: {
+            "stage_name": { [Op.like]: `%${req.query.name ? req.query.name : ''}%` }
+        }
     });
     res.status(200).json(allStages);
   } catch (error) {

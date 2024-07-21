@@ -8,8 +8,11 @@ events.get("/", async (req, res) => {
   try {
     // Find all in ascending order - ASC
     const allEvents = await Event.findAll({
-      order: [["date", "ASC"]],
-    });
+        order: [['available_start_time', 'ASC']],
+        where: {
+            "name": { [Op.like]: `%${req.query.name ? req.query.name : ''}%` }
+  }})
+    ;
     res.status(200).json(allEvents);
   } catch (error) {
     res.status(500).json(error);
